@@ -1,0 +1,118 @@
+/* Portfolio Main Styles */
+
+/* Animated Background */
+body {
+    background: linear-gradient(-45deg, 
+        hsl(var(--p)), 
+        hsl(var(--s)), 
+        hsl(var(--a)), 
+        hsl(var(--n))
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(var(--p)); }
+    50% { box-shadow: 0 0 20px hsl(var(--p)), 0 0 30px hsl(var(--p)); }
+}
+
+/* Utility Classes */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.typing-animation {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--p));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.glow-effect {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Glass Morphism Effects */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme-aware Gradient Backgrounds */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--p)) 0%, hsl(var(--s)) 100%);
+}
+
+.bg-gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--a)) 0%, hsl(var(--n)) 100%);
+}
+
+/* Responsive Design Helpers */
+@media (max-width: 768px) {
+    .typing-animation {
+        animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+}
+
+/* Smooth Transitions */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--b1));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--p));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--pf));
+}

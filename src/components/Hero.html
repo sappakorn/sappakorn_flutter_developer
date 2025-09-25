@@ -1,0 +1,68 @@
+<!-- Hero Section Component -->
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl animate-float">
+        </div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl animate-float"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent/20 rounded-full mix-blend-multiply filter blur-xl animate-float"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <!-- Profile Image -->
+            <div class="mb-8 animate-fade-in-up">
+                <div class="w-32 h-32 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 animate-glow">
+                    <div class="w-full h-full rounded-full bg-base-300 flex items-center justify-center">
+                        <i class="fas fa-user text-4xl text-primary"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animated Name -->
+            <div class="mb-6">
+                <!-- English Name - Large with animation -->
+                <h1 class="text-6xl md:text-8xl font-bold mb-2">
+                    <span class="hero-name inline-block overflow-hidden border-r-2 border-primary animate-typing whitespace-nowrap text-primary">
+                        Sappakorn Kaennakham
+                    </span>
+                </h1>
+                <!-- Thai Name - Smaller -->
+                <h2 class="hero-name-local text-3xl md:text-4xl font-semibold mb-4 animate-fade-in-up text-secondary"
+                    style="animation-delay: 3.5s;">
+                    สรรพกร แก่นนาคำ
+                </h2>
+                <!-- Job Title -->
+                <div class="hero-job-title text-xl md:text-2xl text-base-content/70 animate-fade-in-up font-semibold"
+                    style="animation-delay: 4s;">
+                    Mobile App Developer
+                </div>
+            </div>
+
+            <!-- Description -->
+            <p class="hero-description text-lg md:text-xl text-base-content/70 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
+                style="animation-delay: 4.5s;">
+                Passionate Flutter developer specializing in creating beautiful and functional mobile applications
+                with modern state management solutions
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
+                style="animation-delay: 5s;">
+                <a href="#about" class="hero-learn-more btn btn-primary btn-lg">
+                    Learn More About Me
+                </a>
+                <a href="#contact" class="hero-get-in-touch btn btn-outline btn-lg">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-2xl text-primary"></i>
+    </div>
+</section>
