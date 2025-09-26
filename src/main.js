@@ -26,6 +26,8 @@ class PortfolioApp {
         this.initTypingAnimation();
         this.initParticleEffects();
         this.initIntersectionObserver();
+        this.initDownloadCV();
+        this.initAgeCalculation();
     }
 
     /**
@@ -557,6 +559,98 @@ class PortfolioApp {
     }
 
     // Utility Methods
+    /**
+     * Initialize age calculation functionality
+     */
+    initAgeCalculation() {
+        this.updateAge();
+        // Update age every minute to keep it current
+        setInterval(() => {
+            this.updateAge();
+        }, 60000);
+    }
+
+    /**
+     * Calculate and update age based on birthdate
+     */
+    updateAge() {
+        const birthDate = new Date('1998-01-15');
+        const today = new Date();
+        
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+        // Adjust age if birthday hasn't occurred this year
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        
+        // Update age in the DOM
+        const ageElements = document.querySelectorAll('.age-display');
+        ageElements.forEach(element => {
+            element.textContent = `${age} ปี`;
+        });
+    }
+
+    /**
+     * Initialize CV download functionality
+     */
+    initDownloadCV() {
+        const downloadBtn = document.getElementById('download-cv-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                this.downloadCV();
+            });
+        }
+    }
+
+    /**
+     * Download CV file
+     */
+    downloadCV() {
+        try {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = '/src/assets/cv/sappakorn_kaennakham_flutter_developer.pdf';
+            link.download = 'Sappakorn_Kaennakham_Flutter_Developer_CV.pdf';
+            
+            // Add to DOM, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success feedback
+            this.showDownloadFeedback('success');
+        } catch (error) {
+            console.error('Error downloading CV:', error);
+            this.showDownloadFeedback('error');
+        }
+    }
+
+    /**
+     * Show download feedback to user
+     */
+    showDownloadFeedback(type) {
+        const downloadBtn = document.getElementById('download-cv-btn');
+        if (!downloadBtn) return;
+
+        const originalContent = downloadBtn.innerHTML;
+        
+        if (type === 'success') {
+            downloadBtn.innerHTML = '<i class="fas fa-check"></i><span>Downloaded!</span>';
+            downloadBtn.classList.add('bg-success');
+        } else {
+            downloadBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>Error!</span>';
+            downloadBtn.classList.add('bg-error');
+        }
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+            downloadBtn.innerHTML = originalContent;
+            downloadBtn.classList.remove('bg-success', 'bg-error');
+        }, 2000);
+    }
+
     debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -569,6 +663,201 @@ class PortfolioApp {
         };
     }
 }
+
+/**
+ * แสดงหน้า detail ของ project
+ * @param {string} projectType - ประเภทของ project ('kqcharge', 'mbkmall', 'vanrental')
+ */
+async function showProjectDetail(projectType) {
+    try {
+        const componentLoader = new ComponentLoader();
+        let componentName, filePath;
+        
+        switch (projectType) {
+            case 'kqcharge':
+                componentName = 'KQChargeDetail';
+                filePath = '/src/components/KQChargeDetail.html';
+                break;
+            case 'mbkmall':
+                componentName = 'MBKMallDetail';
+                filePath = '/src/components/MBKMallDetail.html';
+                break;
+            case 'vanrental':
+                componentName = 'VanRentalDetail';
+                filePath = '/src/components/VanRentalDetail.html';
+                break;
+            default:
+                console.error('Unknown project type:', projectType);
+                return;
+        }
+        
+        // โหลดและแสดง component detail
+        const detailHtml = await componentLoader.loadComponent(componentName, filePath);
+        
+        // สร้าง container สำหรับ detail page
+        const detailContainer = document.createElement('div');
+        detailContainer.id = 'project-detail-container';
+        detailContainer.className = 'fixed inset-0 z-50 bg-base-100 overflow-y-auto';
+        detailContainer.innerHTML = detailHtml;
+        
+        // เพิ่ม detail page เข้าไปใน body
+        document.body.appendChild(detailContainer);
+        
+        // เพิ่ม animation เข้ามา
+        detailContainer.style.opacity = '0';
+        detailContainer.style.transform = 'translateY(20px)';
+        
+        // Animate in
+        setTimeout(() => {
+            detailContainer.style.transition = 'all 0.3s ease-out';
+            detailContainer.style.opacity = '1';
+            detailContainer.style.transform = 'translateY(0)';
+        }, 10);
+        
+        // อัพเดต history state
+        history.pushState({ projectDetail: projectType }, '', `#project-${projectType}`);
+        
+        console.log(`✅ Project detail loaded: ${projectType}`);
+    } catch (error) {
+        console.error('❌ Error loading project detail:', error);
+        alert('ไม่สามารถโหลดรายละเอียดโปรเจคได้ กรุณาลองใหม่อีกครั้ง');
+    }
+}
+
+/**
+ * ปิดหน้า detail และกลับไปหน้าหลัก
+ */
+function closeProjectDetail() {
+    const detailContainer = document.getElementById('project-detail-container');
+    if (detailContainer) {
+        // Animate out
+        detailContainer.style.transition = 'all 0.3s ease-out';
+        detailContainer.style.opacity = '0';
+        detailContainer.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            detailContainer.remove();
+        }, 300);
+        
+        // อัพเดต history state
+        history.pushState({}, '', '/');
+    }
+}
+
+// Handle browser back button
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.projectDetail) {
+        // ถ้ามี project detail ใน state ให้โหลดขึ้นมา
+        showProjectDetail(event.state.projectDetail);
+    } else {
+        // ถ้าไม่มี ให้ปิด detail page
+        closeProjectDetail();
+    }
+});
+
+// Image Preview Functions
+function showImagePreview(imageSrc, altText = 'Image Preview') {
+    // ตรวจสอบว่ามี preview อยู่แล้วหรือไม่
+    const existingPreview = document.getElementById('image-preview-modal');
+    if (existingPreview) {
+        return;
+    }
+    
+    // สร้าง modal สำหรับ preview รูป
+    const modal = document.createElement('div');
+    modal.id = 'image-preview-modal';
+    modal.className = 'fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4';
+    modal.style.opacity = '0';
+    
+    modal.innerHTML = `
+        <div class="relative max-w-4xl max-h-full">
+            <!-- Close Button -->
+            <button 
+                onclick="closeImagePreview()" 
+                class="absolute -top-12 right-0 text-white hover:text-red-400 transition-colors z-10"
+                title="Close Preview"
+            >
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <!-- Image Container -->
+            <div class="relative bg-white rounded-2xl p-2 shadow-2xl">
+                <img 
+                    src="${imageSrc}" 
+                    alt="${altText}"
+                    class="max-w-full max-h-[80vh] object-contain rounded-xl"
+                    style="min-width: 300px;"
+                />
+                
+                <!-- Image Info -->
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent rounded-b-xl p-4">
+                    <p class="text-white text-sm font-medium">${altText}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // เพิ่ม event listener สำหรับปิด modal เมื่อคลิกพื้นหลัง
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeImagePreview();
+        }
+    });
+    
+    // เพิ่ม modal เข้าไปใน body
+    document.body.appendChild(modal);
+    
+    // Animate in
+    setTimeout(() => {
+        modal.style.transition = 'opacity 0.3s ease-out';
+        modal.style.opacity = '1';
+    }, 10);
+    
+    // เพิ่ม event listener สำหรับ ESC key
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            closeImagePreview();
+        }
+    };
+    document.addEventListener('keydown', handleEscape);
+    modal.setAttribute('data-escape-listener', 'true');
+    
+    console.log('✅ Image preview opened:', imageSrc);
+}
+
+function closeImagePreview() {
+    const modal = document.getElementById('image-preview-modal');
+    if (!modal) return;
+    
+    // Animate out
+    modal.style.transition = 'opacity 0.3s ease-out';
+    modal.style.opacity = '0';
+    
+    // ลบ escape key listener
+    if (modal.getAttribute('data-escape-listener')) {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                closeImagePreview();
+            }
+        };
+        document.removeEventListener('keydown', handleEscape);
+    }
+    
+    // ลบ modal หลังจาก animation เสร็จ
+    setTimeout(() => {
+        if (modal.parentNode) {
+            modal.parentNode.removeChild(modal);
+        }
+    }, 300);
+    
+    console.log('✅ Image preview closed');
+}
+
+// Make functions globally available
+window.showProjectDetail = showProjectDetail;
+window.closeProjectDetail = closeProjectDetail;
+window.showImagePreview = showImagePreview;
+window.closeImagePreview = closeImagePreview;
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

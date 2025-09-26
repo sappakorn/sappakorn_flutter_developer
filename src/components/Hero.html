@@ -14,10 +14,14 @@
         <div class="max-w-4xl mx-auto">
             <!-- Profile Image -->
             <div class="mb-8 animate-fade-in-up">
-                <div class="w-32 h-32 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 animate-glow">
-                    <div class="w-full h-full rounded-full bg-base-300 flex items-center justify-center">
-                        <i class="fas fa-user text-4xl text-primary"></i>
-                    </div>
+                <div class="w-32 h-32 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 animate-glow cursor-pointer hover:scale-105 transition-transform duration-300"
+                     onclick="showImagePreview('/src/assets/image/IMG_1958.jpg', 'Sappakorn Profile Picture')"
+                     title="Click to preview profile picture">
+                    <img
+                        src="/src/assets/image/IMG_1958.jpg"
+                        alt="Sappakorn Profile"
+                        class="w-full h-full rounded-full object-cover object-left-bottom pointer-events-none"
+                    />
                 </div>
             </div>
 
