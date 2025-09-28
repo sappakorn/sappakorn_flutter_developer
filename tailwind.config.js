@@ -8,6 +8,6 @@ tailwind.config = {
     extend: {},
   },
   daisyui: {
-    themes: ["aqua", "lofi", "business", "dark", "light", "retro", "valentine"],
+    themes: ["lofi", "night", "luxury"],
   },
 }

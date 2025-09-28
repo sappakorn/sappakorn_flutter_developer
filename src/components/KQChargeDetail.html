@@ -6,7 +6,7 @@
       <div class="mb-8">
         <button onclick="closeProjectDetail()" class="btn btn-ghost btn-sm">
           <i class="fas fa-arrow-left mr-2"></i>
-          <span class="back-to-projects">Back to Projects</span>
+          <span class="back-to-projects">กลับไปยังผลงาน</span>
         </button>
       </div>
 
@@ -23,86 +23,36 @@
           KQCharge
         </h1>
         <p class="project-detail-subtitle-kq text-xl text-base-content/70 max-w-3xl mx-auto">
-          Electric Vehicle Charging Station Management Application
+          แอปพลิเคชันจัดการสถานีชาร์จรถยนต์ไฟฟ้า
         </p>
-        <div class="flex justify-center gap-4 mt-6">
-          <a
-            href="https://apps.apple.com/th/app/kqcharge/id6744957409?l=th"
-            target="_blank"
-            class="btn btn-primary"
-          >
-            <i class="fab fa-apple mr-2"></i>
-            <span class="download-appstore-kq">Download on App Store</span>
-          </a>
-        </div>
+
       </div>
 
       <!-- Project Overview -->
-      <div class="grid lg:grid-cols-2 gap-12 mb-16">
-        <!-- Description -->
-        <div class="space-y-6">
-          <h2 class="project-overview-title-kq text-3xl font-bold text-primary">
-            Project Overview
+      <div class="mb-16">
+        <div class="text-center max-w-4xl mx-auto">
+          <h2 class="project-overview-title-kq text-3xl font-bold text-primary mb-6">
+            📱 ภาพรวมโปรเจ็กต์
           </h2>
           <p class="project-overview-desc-kq text-lg text-base-content/80 leading-relaxed">
-            KQCharge is a comprehensive mobile application designed for electric vehicle (EV) owners and charging station operators. The app provides real-time monitoring of charging stations, seamless payment integration, and efficient fleet management capabilities.
+            แอปพลิเคชันมือถือที่พัฒนาด้วย Flutter สำหรับจัดการสถานีชาร์จรถยนต์ไฟฟ้า พร้อมระบบติดตามแบบเรียลไทม์ การชำระเงิน และระบบยืนยันตัวตนแบบหลากหลายแพลตฟอร์ม
           </p>
-          <p class="project-overview-desc2-kq text-lg text-base-content/80 leading-relaxed">
-            Built with Flutter and GetX state management, the application offers a smooth user experience across both iOS and Android platforms, featuring intuitive navigation and responsive design.
-          </p>
-        </div>
-
-        <!-- Key Features -->
-        <div class="space-y-6">
-          <h2 class="key-features-title-kq text-3xl font-bold text-secondary">
-            Key Features
-          </h2>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <div class="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
-              <div>
-                <h3 class="feature-realtime-title-kq font-semibold text-lg">Real-time Monitoring</h3>
-                <p class="feature-realtime-desc-kq text-base-content/70">Live tracking of charging station status and availability</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
-              <div>
-                <h3 class="feature-payment-title-kq font-semibold text-lg">Payment Integration</h3>
-                <p class="feature-payment-desc-kq text-base-content/70">Secure and seamless payment processing for charging sessions</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
-              <div>
-                <h3 class="feature-management-title-kq font-semibold text-lg">Station Management</h3>
-                <p class="feature-management-desc-kq text-base-content/70">Comprehensive tools for charging station operators</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
-              <div>
-                <h3 class="feature-analytics-title-kq font-semibold text-lg">Analytics Dashboard</h3>
-                <p class="feature-analytics-desc-kq text-base-content/70">Detailed insights and reporting for usage patterns</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Technical Stack -->
       <div class="mb-16">
         <h2 class="tech-stack-title-kq text-3xl font-bold text-accent mb-8 text-center">
-          Technical Stack
+          🛠 เทคโนโลยีที่ใช้
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-4 gap-6">
           <div class="bg-base-100/80 backdrop-blur-lg rounded-2xl p-6 border border-base-content/10">
             <div class="text-center">
               <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fab fa-flutter text-2xl text-primary"></i>
               </div>
-              <h3 class="tech-flutter-title-kq font-bold text-lg mb-2">Flutter</h3>
-              <p class="tech-flutter-desc-kq text-base-content/70 text-sm">Cross-platform mobile development framework</p>
+              <h3 class="tech-flutter-title-kq font-bold text-lg mb-2">Flutter 3.x</h3>
+              <p class="tech-flutter-desc-kq text-base-content/70 text-sm">เฟรมเวิร์กข้ามแพลตฟอร์มด้วย Dart</p>
             </div>
           </div>
           <div class="bg-base-100/80 backdrop-blur-lg rounded-2xl p-6 border border-base-content/10">
@@ -111,69 +61,141 @@
                 <i class="fas fa-cogs text-2xl text-secondary"></i>
               </div>
               <h3 class="tech-getx-title-kq font-bold text-lg mb-2">GetX</h3>
-              <p class="tech-getx-desc-kq text-base-content/70 text-sm">State management and dependency injection</p>
+              <p class="tech-getx-desc-kq text-base-content/70 text-sm">จัดการสถานะและ dependency injection</p>
             </div>
           </div>
           <div class="bg-base-100/80 backdrop-blur-lg rounded-2xl p-6 border border-base-content/10">
             <div class="text-center">
               <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-plug text-2xl text-accent"></i>
+                <i class="fab fa-google text-2xl text-accent"></i>
               </div>
-              <h3 class="tech-api-title-kq font-bold text-lg mb-2">API Integration</h3>
-              <p class="tech-api-desc-kq text-base-content/70 text-sm">RESTful API integration for real-time data</p>
+              <h3 class="tech-firebase-title-kq font-bold text-lg mb-2">Firebase</h3>
+              <p class="tech-firebase-desc-kq text-base-content/70 text-sm">ยืนยันตัวตน, ฐานข้อมูลเรียลไทม์ และ Cloud Messaging</p>
+            </div>
+          </div>
+          <div class="bg-base-100/80 backdrop-blur-lg rounded-2xl p-6 border border-base-content/10">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-map-marked-alt text-2xl text-primary"></i>
+              </div>
+              <h3 class="tech-maps-title-kq font-bold text-lg mb-2">Google Maps</h3>
+              <p class="tech-maps-desc-kq text-base-content/70 text-sm">การรวมแผนที่และบริการตำแหน่ง</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Project Highlights -->
+      <!-- Key Features -->
       <div class="mb-16">
-        <h2 class="highlights-title-kq text-3xl font-bold text-primary mb-8 text-center">
-          Project Highlights
+        <h2 class="key-features-title-kq text-3xl font-bold text-secondary mb-8 text-center">
+          ⚡ คุณสมบัติหลัก
         </h2>
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Authentication & Security -->
           <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-8 border border-primary/20">
-            <h3 class="highlight-performance-title-kq text-xl font-bold mb-4">High Performance</h3>
-            <p class="highlight-performance-desc-kq text-base-content/80">
-              Optimized for smooth performance with efficient state management and minimal resource consumption.
-            </p>
+            <h3 class="text-xl font-bold mb-4 text-primary">🔐 การยืนยันตัวตนและความปลอดภัย</h3>
+            <ul class="space-y-3 text-base-content/80">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>เข้าสู่ระบบหลายแพลตฟอร์ม: Google Sign-in, Apple Sign-in</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>การยืนยันตัวตนผ่านโทรศัพท์: ระบบยืนยัน SMS OTP</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>การจัดการโปรไฟล์: ข้อมูลผู้ใช้พร้อมการตรวจสอบ</span>
+              </li>
+            </ul>
           </div>
+
+          <!-- Station Discovery & Management -->
           <div class="bg-gradient-to-br from-secondary/10 to-accent/10 rounded-3xl p-8 border border-secondary/20">
-            <h3 class="highlight-ux-title-kq text-xl font-bold mb-4">User-Centric Design</h3>
-            <p class="highlight-ux-desc-kq text-base-content/80">
-              Intuitive interface designed with user experience in mind, making EV charging management effortless.
-            </p>
+            <h3 class="text-xl font-bold mb-4 text-secondary">🗺 การค้นหาและจัดการสถานี</h3>
+            <ul class="space-y-3 text-base-content/80">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-secondary mt-1 text-sm"></i>
+                <span>การรวม Google Maps: แผนที่แบบโต้ตอบพร้อมเครื่องหมาย</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-secondary mt-1 text-sm"></i>
+                <span>มุมมองรายการและแผนที่: สลับระหว่างโหมดการแสดงผล</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-secondary mt-1 text-sm"></i>
+                <span>การกรองตามตำแหน่ง: จัดกลุ่มตามจังหวัดและภูมิภาค</span>
+              </li>
+            </ul>
           </div>
+
+          <!-- Real-time Charging Monitoring -->
           <div class="bg-gradient-to-br from-accent/10 to-primary/10 rounded-3xl p-8 border border-accent/20">
-            <h3 class="highlight-scalable-title-kq text-xl font-bold mb-4">Scalable Architecture</h3>
-            <p class="highlight-scalable-desc-kq text-base-content/80">
-              Built with scalability in mind to accommodate growing user base and expanding charging networks.
-            </p>
+            <h3 class="text-xl font-bold mb-4 text-accent">⚡ การติดตามการชาร์จแบบเรียลไทม์</h3>
+            <ul class="space-y-3 text-base-content/80">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-accent mt-1 text-sm"></i>
+                <span>เปอร์เซ็นต์แบตเตอรี่แบบสด: การติดตามความคืบหน้าแบบเรียลไทม์</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-accent mt-1 text-sm"></i>
+                <span>การใช้พลังงาน: การติดตามพลังงานแบบสด</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-accent mt-1 text-sm"></i>
+                <span>ตัวชี้วัดประสิทธิภาพ: ความเร็วและประสิทธิภาพการชาร์จ</span>
+              </li>
+            </ul>
           </div>
+
+          <!-- Payment & User Engagement -->
           <div class="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border border-primary/20">
-            <h3 class="highlight-security-title-kq text-xl font-bold mb-4">Secure Transactions</h3>
-            <p class="highlight-security-desc-kq text-base-content/80">
-              Implements industry-standard security protocols for safe and secure payment processing.
-            </p>
+            <h3 class="text-xl font-bold mb-4 text-primary">💳 การชำระเงินและการมีส่วนร่วมของผู้ใช้</h3>
+            <ul class="space-y-3 text-base-content/80">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>การชำระเงินแบบรวม: การประมวลผลการชำระเงินที่ปลอดภัย</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>ประวัติการทำธุรกรรม: บันทึกเซสชันที่สมบูรณ์</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-primary mt-1 text-sm"></i>
+                <span>การแจ้งเตือนแบบพุช: การแจ้งเตือนและอัปเดตแบบเรียลไทม์</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
+
+
       <!-- Call to Action -->
       <div class="text-center">
         <div class="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl p-8 border border-primary/30">
-          <h2 class="cta-title-kq text-2xl font-bold mb-4">Experience KQCharge Today</h2>
+          <h2 class="cta-title-kq text-2xl font-bold mb-4">แอปพลิเคชันมือถือ KQCharge</h2>
           <p class="cta-desc-kq text-base-content/70 mb-6">
-            Download the app and join the electric vehicle revolution with seamless charging management.
+            แอปจัดการสถานีชาร์จรถยนต์ไฟฟ้าที่พัฒนาด้วย Flutter พร้อมระบบติดตามแบบเรียลไทม์ การชำระเงิน และประสบการณ์ผู้ใช้ที่ราบรื่นสำหรับเจ้าของรถยนต์ไฟฟ้า
           </p>
-          <a
-            href="https://apps.apple.com/th/app/kqcharge/id6744957409?l=th"
-            target="_blank"
-            class="btn btn-primary btn-lg"
-          >
-            <i class="fab fa-apple mr-2"></i>
-            <span class="download-now-kq">Download Now</span>
-          </a>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="https://apps.apple.com/th/app/kqcharge/id6744957409?l=th"
+              target="_blank"
+              class="btn btn-primary btn-lg"
+            >
+              <i class="fab fa-apple mr-2"></i>
+              <span class="view-app-kq">ดูใน App Store</span>
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.kq.kqcharge&hl=th"
+              target="_blank"
+              class="btn btn-secondary btn-lg"
+            >
+              <i class="fab fa-google-play mr-2"></i>
+              <span class="view-app-kq">ดูใน Google Play</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

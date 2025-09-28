@@ -5,7 +5,7 @@ import ComponentLoader from './components/ComponentLoader.js'
 // Portfolio JavaScript - Theme Switching and Animations
 class PortfolioApp {
     constructor() {
-        this.currentTheme = this.getStoredTheme() || 'aqua';
+        this.currentTheme = this.getStoredTheme() || 'lofi';
         this.currentLanguage = this.getStoredLanguage() || 'en';
         this.translations = translations;
         this.componentLoader = new ComponentLoader();
@@ -146,6 +146,27 @@ class PortfolioApp {
     translateContent() {
         const t = this.translations[this.currentLanguage];
         
+        // Update all elements with data-translate attributes
+        const elementsToTranslate = document.querySelectorAll('[data-translate]');
+        elementsToTranslate.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            const translation = this.getNestedTranslation(t, key);
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+
+        // Update elements with data-translate-title attributes for tooltips
+        const elementsWithTitleTranslate = document.querySelectorAll('[data-translate-title]');
+        elementsWithTitleTranslate.forEach(element => {
+            const key = element.getAttribute('data-translate-title');
+            const translation = this.getNestedTranslation(t, key);
+            if (translation) {
+                element.setAttribute('title', translation);
+            }
+        });
+
+        // Legacy support for class-based selectors (keeping for backward compatibility)
         // Update navigation
         const navLinks = {
             'home': t.nav.home,
@@ -157,13 +178,13 @@ class PortfolioApp {
         Object.keys(navLinks).forEach(href => {
             const links = document.querySelectorAll(`a[href="#${href}"]`);
             links.forEach(link => {
-                if (!link.closest('#theme-sidebar')) { // Skip theme sidebar links
+                if (!link.closest('#theme-sidebar') && !link.hasAttribute('data-translate')) { 
                     link.textContent = navLinks[href];
                 }
             });
         });
 
-        // Update hero section
+        // Update hero section (legacy support)
         this.updateElement('.hero-name', t.hero.name);
         this.updateElement('.hero-name-local', t.hero.nameLocal);
         this.updateElement('.hero-job-title', t.hero.jobTitle);
@@ -171,7 +192,7 @@ class PortfolioApp {
         this.updateElement('.hero-learn-more', t.hero.learnMore);
         this.updateElement('.hero-get-in-touch', t.hero.getInTouch);
 
-        // Update about section
+        // Update about section (legacy support)
         this.updateElement('.about-title', t.about.title);
         this.updateElement('.personal-info-title', t.about.personalInfo);
         this.updateElement('.expertise-title', t.about.expertise);
@@ -180,19 +201,31 @@ class PortfolioApp {
         this.updateElement('.collaboration-title', t.about.collaborationTitle);
         this.updateElement('.collaboration-desc', t.about.collaborationDesc);
 
-        // Update skills section
+        // Update skills section (legacy support)
         this.updateElement('.skills-title', t.skills.title);
 
-        // Update contact section
+        // Update contact section (legacy support)
         this.updateElement('.contact-title', t.contact.title);
         this.updateElement('.contact-description', t.contact.description);
 
-        // Update footer
+        // Update footer (legacy support)
         this.updateElement('.footer-rights', t.footer.rights);
 
-        // Update theme sidebar
+        // Update theme sidebar (legacy support)
         this.updateElement('.themes-title', t.themes.title);
         this.updateElement('.themes-subtitle', t.themes.subtitle);
+    }
+
+    /**
+     * Get nested translation value from object using dot notation
+     * @param {Object} obj - Translation object
+     * @param {string} key - Key in dot notation (e.g., 'nav.home')
+     * @returns {string|null} - Translation value or null if not found
+     */
+    getNestedTranslation(obj, key) {
+        return key.split('.').reduce((current, prop) => {
+            return current && current[prop] ? current[prop] : null;
+        }, obj);
     }
 
     updateElement(selector, text) {
@@ -219,7 +252,7 @@ class PortfolioApp {
     }
 
     toggleTheme() {
-        const themes = ['aqua', 'lofi', 'business', 'dark', 'light', 'retro', 'cyberpunk', 'valentine'];
+        const themes = ['lofi', 'night', 'luxury'];
         const currentIndex = themes.indexOf(this.currentTheme);
         const nextIndex = (currentIndex + 1) % themes.length;
         this.setTheme(themes[nextIndex]);
@@ -872,7 +905,7 @@ if (window.matchMedia) {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', () => {
         if (!localStorage.getItem('portfolio-theme')) {
-            const newTheme = mediaQuery.matches ? 'lofi' : 'aqua';
+            const newTheme = mediaQuery.matches ? 'night' : 'lofi';
             window.portfolioApp?.setTheme(newTheme);
         }
     });
